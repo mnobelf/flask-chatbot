@@ -15,6 +15,7 @@ con = sqlite3.connect("qa.sqlite3")
 dataframe = pd.read_sql_query("SELECT question, answer FROM qa_pair", con)
 
 last_msg = {}
+waiting_time = 10
 
 @socketio.on('connect')
 def welcomeMessage(auth):
@@ -37,3 +38,20 @@ def handleMessage(msg):
 
     print(request)
     last_msg[request.sid] = time.time()
+
+def idle_check_thread():
+    while True:
+        current_time = time.time()
+        try:
+            for e in last_msg:
+                if (last_msg[e] + waiting_time) < current_time:
+                    send("are you there?", to = e)
+                    last_msg.pop(e)
+        except:
+            pass
+
+x = threading.Thread(target=idle_check_thread)
+x.start()
+
+if __name__ == '__main__':
+    socketio.run(app)
