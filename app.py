@@ -45,7 +45,7 @@ def idle_check_thread():
         try:
             for e in last_msg:
                 if (last_msg[e] + waiting_time) < current_time:
-                    send("are you there?", to = e)
+                    socketio.send("are you there?", to = e)
                     last_msg.pop(e)
         except:
             pass
