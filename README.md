@@ -40,7 +40,7 @@ The API uses SocketIO as websocket technology to provide full-duplex communicati
     | :---:   | :---: |
     | what's your name? | my name is mochi   |
     | how old are you | im 5   |
-    | what is your favorite food | T love meatt   |
+    | what is your favorite food | I love meatt   |
     | what are your hobbies? | I like sleeping a lot, eating   |
     | pizza | my favorite italian dish!   |
 
